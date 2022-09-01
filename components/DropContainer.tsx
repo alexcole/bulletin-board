@@ -16,33 +16,32 @@ export const DropContainer = ({
     () => ({
       accept: ItemTypes.NOTE,
       drop: (id: Id<'notes'>, monitor) => {
-        console.log(
-          'running',
-          monitor.getDifferenceFromInitialOffset(),
-          monitor.getClientOffset()
-        )
-        const { x, y } = monitor.getClientOffset()!
-
-        setPosition.withOptimisticUpdate((localStore) => {
-          const notes = localStore.getQuery('getNotes', [])
-          if (notes !== undefined) {
-            const newNotes = []
-            for (const note of notes) {
-              if (note._id.equals(id)) {
-                newNotes.push({
-                  ...note,
-                  position: {
-                    x,
-                    y,
-                  },
-                })
-              } else {
-                newNotes.push(note)
+        const offset = monitor.getClientOffset()
+        if (offset) {
+          let { x, y } = offset
+          x = x - 35
+          y = y - 40
+          setPosition.withOptimisticUpdate((localStore) => {
+            const notes = localStore.getQuery('getNotes', [])
+            if (notes !== undefined) {
+              const newNotes = []
+              for (const note of notes) {
+                if (note._id.equals(id)) {
+                  newNotes.push({
+                    ...note,
+                    position: {
+                      x,
+                      y,
+                    },
+                  })
+                } else {
+                  newNotes.push(note)
+                }
               }
+              localStore.setQuery('getNotes', [], newNotes)
             }
-            localStore.setQuery('getNotes', [], newNotes)
-          }
-        })(id, { x, y })
+          })(id, { x, y })
+        }
       },
     }),
     []

@@ -24,3 +24,7 @@ export const setPosition = mutation(
     })
   }
 )
+
+export const trash = mutation(({ db }, id: Id<'notes'>) => {
+  db.delete(id)
+})

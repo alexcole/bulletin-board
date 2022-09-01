@@ -13,6 +13,7 @@ import type getNotes from "../getNotes";
 import type { create as note__create } from "../note";
 import type { setPosition as note__setPosition } from "../note";
 import type { setText as note__setText } from "../note";
+import type { trash as note__trash } from "../note";
 import type { OptimisticLocalStore as GenericOptimisticLocalStore } from "convex/browser";
 import type { ClientMutation, ClientQuery } from "convex/server";
 
@@ -33,6 +34,7 @@ export type ConvexAPI = {
     "note:create": ClientMutation<typeof note__create>;
     "note:setPosition": ClientMutation<typeof note__setPosition>;
     "note:setText": ClientMutation<typeof note__setText>;
+    "note:trash": ClientMutation<typeof note__trash>;
   };
 };
 

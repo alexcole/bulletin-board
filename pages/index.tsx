@@ -5,6 +5,7 @@ import { CreateNoteButton } from '../components/CreateNoteButton'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import { DropContainer } from '../components/DropContainer'
+import { Trash } from '../components/Trash'
 const Home: NextPage = () => {
   const notes = useQuery('getNotes')
 
@@ -17,7 +18,7 @@ const Home: NextPage = () => {
       <DropContainer>
         <>
           <CreateNoteButton />
-
+          <Trash />
           <BulletinBoard notes={notes} />
         </>
       </DropContainer>
