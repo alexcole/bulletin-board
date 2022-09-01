@@ -17,13 +17,10 @@ export const setText = mutation(({ db }, id: Id<'notes'>, text: string) => {
 })
 
 export const setPosition = mutation(
-  async ({ db }, id: Id<'notes'>, position: { dx: number; dy: number }) => {
+  async ({ db }, id: Id<'notes'>, position: { x: number; y: number }) => {
     const note = (await db.get(id))!
     db.patch(id, {
-      position: {
-        x: note.position.x + position.dx,
-        y: note.position.y + position.dy,
-      },
+      position,
     })
   }
 )
