@@ -20,7 +20,10 @@ export const setPosition = mutation(
   async ({ db }, id: Id<'notes'>, position: { x: number; y: number }) => {
     const note = (await db.get(id))!
     db.patch(id, {
-      position,
+      position: {
+        x: note.position.x + position.x,
+        y: note.position.y + position.y,
+      },
     })
   }
 )
