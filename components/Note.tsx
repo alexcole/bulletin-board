@@ -37,7 +37,6 @@ export function Note(props: { note: Document<'notes'> }) {
       value={props.note.text}
       onChange={updateText}
       className={styles.note}
-      
     />
   )
 }
