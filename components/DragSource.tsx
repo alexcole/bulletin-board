@@ -1,12 +1,17 @@
 import { Document } from '../convex/_generated/dataModel'
 import { ItemTypes } from '../common/dragAndDrop'
 import { useDrag } from 'react-dnd'
-import { Note } from './Note'
+import { ReactElement } from 'react'
+import styles from './DragSource.module.css'
 
-export const DragSource = (props: { note: Document<'notes'> }) => {
+export function DragSource(props: {
+  dndItemType: ItemTypes
+  dndItem: Document<'items'>
+  children: ReactElement
+}) {
   const [{ isDragging }, drag] = useDrag(() => ({
-    type: ItemTypes.NOTE,
-    item: props.note._id,
+    type: props.dndItemType,
+    item: props.dndItem,
     collect: (monitor) => {
       return {
         isDragging: monitor.isDragging(),
@@ -17,13 +22,14 @@ export const DragSource = (props: { note: Document<'notes'> }) => {
   return (
     <div
       ref={drag}
+      className={styles.dragSource}
       style={{
-        left: `${props.note.position.x}px`,
-        top: `${props.note.position.y}px`,
-        position: 'absolute',
+        left: `${props.dndItem.position.x}px`,
+        top: `${props.dndItem.position.y}px`,
+        zIndex: props.dndItem.position.z,
       }}
     >
-      {!isDragging ? <Note note={props.note} /> : null}
+      {!isDragging ? props.children : null}
     </div>
   )
 }

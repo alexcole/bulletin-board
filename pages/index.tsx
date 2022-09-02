@@ -1,29 +1,27 @@
-import type { NextPage } from 'next'
-import { useQuery } from '../convex/_generated/react'
-import { BulletinBoard } from '../components/BulletinBoard'
-import { CreateNoteButton } from '../components/CreateNoteButton'
-import { DndProvider } from 'react-dnd'
-import { HTML5Backend } from 'react-dnd-html5-backend'
-import { DropContainer } from '../components/DropContainer'
-import { Trash } from '../components/Trash'
-const Home: NextPage = () => {
-  const notes = useQuery('getNotes')
+import { NextPage } from 'next'
+import { useRouter } from 'next/router'
+import { useMutation } from '../convex/_generated/react'
 
-  if (notes == undefined) {
-    return <div>"loading..."</div>
+function makeid(length: number) {
+  var result = ''
+  var characters =
+    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+  var charactersLength = characters.length
+  for (var i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength))
   }
-
-  return (
-    <DndProvider backend={HTML5Backend}>
-      <DropContainer>
-        <>
-          <CreateNoteButton />
-          <Trash />
-          <BulletinBoard notes={notes} />
-        </>
-      </DropContainer>
-    </DndProvider>
-  )
+  return result
 }
 
-export default Home
+const HomePage: NextPage = () => {
+  const create = useMutation('bulletinBoard:create')
+  const router = useRouter()
+  const onClick = () => {
+    const id = makeid(5)
+    create(id)
+    router.push(`/${id}`)
+  }
+  return <button onClick={onClick}>Create New Bulletin Board</button>
+}
+
+export default HomePage

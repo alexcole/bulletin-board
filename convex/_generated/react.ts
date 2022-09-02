@@ -9,11 +9,12 @@
  * @module
  */
 
-import type getNotes from "../getNotes";
-import type { create as note__create } from "../note";
-import type { setPosition as note__setPosition } from "../note";
-import type { setText as note__setText } from "../note";
-import type { trash as note__trash } from "../note";
+import type { create as bulletinBoard__create } from "../bulletinBoard";
+import type { load as bulletinBoard__load } from "../bulletinBoard";
+import type { setPosition as item__setPosition } from "../item";
+import type { create as textNote__create } from "../textNote";
+import type { setText as textNote__setText } from "../textNote";
+import type { trash as textNote__trash } from "../textNote";
 import type { OptimisticLocalStore as GenericOptimisticLocalStore } from "convex/browser";
 import type { ClientMutation, ClientQuery } from "convex/server";
 
@@ -28,13 +29,14 @@ import type { ClientMutation, ClientQuery } from "convex/server";
  */
 export type ConvexAPI = {
   queries: {
-    getNotes: ClientQuery<typeof getNotes>;
+    "bulletinBoard:load": ClientQuery<typeof bulletinBoard__load>;
   };
   mutations: {
-    "note:create": ClientMutation<typeof note__create>;
-    "note:setPosition": ClientMutation<typeof note__setPosition>;
-    "note:setText": ClientMutation<typeof note__setText>;
-    "note:trash": ClientMutation<typeof note__trash>;
+    "bulletinBoard:create": ClientMutation<typeof bulletinBoard__create>;
+    "item:setPosition": ClientMutation<typeof item__setPosition>;
+    "textNote:create": ClientMutation<typeof textNote__create>;
+    "textNote:setText": ClientMutation<typeof textNote__setText>;
+    "textNote:trash": ClientMutation<typeof textNote__trash>;
   };
 };
 
