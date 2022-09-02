@@ -1,7 +1,7 @@
 lockfileVersion: 5.3
 
 specifiers:
-  '@types/node': ~16.11.12
+  '@types/node': ~16.11.56
   '@types/react': 17.0.45
   '@types/react-dnd': ^3.0.2
   '@types/react-dnd-html5-backend': ^3.0.2
@@ -13,10 +13,10 @@ specifiers:
   react-dnd: ^16.0.1
   react-dnd-html5-backend: ^16.0.1
   react-dom: ^18.2.0
-  typescript: ^4.7.3
+  typescript: ^4.8.2
 
 dependencies:
-  convex: 0.1.9_react-dom@18.2.0+react@18.2.0
+  convex: 0.1.10_react-dom@18.2.0+react@18.2.0
   next: 12.2.5_react-dom@18.2.0+react@18.2.0
   react: 18.2.0
   react-dnd: 16.0.1_eeee0477c5e5325fad21e52536c50954
@@ -40,8 +40,8 @@ packages:
     dependencies:
       regenerator-runtime: 0.13.9
 
-  /@convex-dev/common/0.1.9:
-    resolution: {integrity: sha512-T9yLsSgUwe8MOjmUrHvg9bdFt1x1ZLHC7CHT3p4HoA6/9ZVyOZpOX1if1pdwKpcOqqZaQk3ihADmQYQoM/4RDQ==}
+  /@convex-dev/common/0.1.10:
+    resolution: {integrity: sha512-wLvIByndZyLZ292rzDahSm8mPXHl5ZrD0aBVKSNVWJeOX8x1zCD9gBtECBKLj8BbXfngW6rCcGZKcjmNzcbEZQ==}
     dependencies:
       base64-js: 1.5.1
     dev: false
@@ -256,8 +256,8 @@ packages:
     resolution: {integrity: sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==}
     dev: false
 
-  /convex/0.1.9_react-dom@18.2.0+react@18.2.0:
-    resolution: {integrity: sha512-QupS15hP2ieGcOTyEm1aopn4WHfFgNMxs0HgRTMPalPBl8QNwT+CgEW3v5azM5geVecKZh1P+s83sS46AAlYNw==}
+  /convex/0.1.10_react-dom@18.2.0+react@18.2.0:
+    resolution: {integrity: sha512-PoINbkFD1g1H9DItfkTzPSMlcFrQf+7/6Kre3/l+fWUFqOpCTmTsLR7f5RLqyteAqDeLVLp/wcPtCOwZJEEMZw==}
     engines: {node: '>=14.17.0', npm: '>=7.0.0'}
     hasBin: true
     peerDependencies:
@@ -272,7 +272,7 @@ packages:
       react-dom:
         optional: true
     dependencies:
-      '@convex-dev/common': 0.1.9
+      '@convex-dev/common': 0.1.10
       base64-js: 1.5.1
       chalk: 4.1.2
       encoding: 0.1.13

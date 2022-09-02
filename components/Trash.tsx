@@ -3,6 +3,8 @@ import { useDrop } from 'react-dnd'
 import { Id } from '../convex/_generated/dataModel'
 import { useMutation } from '../convex/_generated/react'
 import { ItemTypes } from '../common/dragAndDrop'
+import Image from 'next/image'
+import trashIcon from '../public/trash.png'
 
 export function Trash() {
   const trash = useMutation('note:trash')
@@ -17,7 +19,7 @@ export function Trash() {
   )
   return (
     <div className={styles.trash} ref={drop}>
-      Trash
+      <Image alt="Mountains" src={trashIcon} objectFit="none" quality={100} />{' '}
     </div>
   )
 }
