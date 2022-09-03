@@ -30,7 +30,7 @@ export function TrashCan(props: { bulletinBoardId: string }) {
   )
   return (
     <div ref={drop}>
-      <Image alt="Trash Can" src={trashIcon} objectFit="none" quality={100} />{' '}
+      <Image alt="Trash Can" src={trashIcon} objectFit="cover" quality={100} />{' '}
     </div>
   )
 }

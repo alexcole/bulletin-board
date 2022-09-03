@@ -29,7 +29,7 @@ export function NotePad(props: {
           },
           text: '',
           bulletinBoard: props.notePad.bulletinBoard,
-          _id: new Id('items', 'new id string'),
+          _id: new Id('items', crypto.randomUUID()),
           _creationTime: Date.now(),
         }
 
@@ -47,7 +47,7 @@ export function NotePad(props: {
     <Image
       alt="Note Pad"
       src={notePad}
-      objectFit="none"
+      objectFit="cover"
       quality={100}
       onClick={onClick}
     />
