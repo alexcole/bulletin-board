@@ -1,13 +1,14 @@
 import { Document } from '../convex/_generated/dataModel'
-import { ItemTypes } from '../common/dragAndDrop'
+import { ItemTypes, setPosition } from '../common/dragAndDrop'
 import { useDrag } from 'react-dnd'
 import { ReactElement } from 'react'
-import styles from './DragSource.module.css'
+import { useConvex } from '../convex/_generated/react'
 
 export function DragSource(props: {
   dndItemType: ItemTypes
   dndItem: Document<'items'>
   children: ReactElement
+  bulletinBoardId: string
 }) {
   const [{ isDragging }, drag] = useDrag(() => ({
     type: props.dndItemType,
@@ -19,15 +20,15 @@ export function DragSource(props: {
     },
   }))
 
+  const convex = useConvex()
+  const onClick = () => {
+    setPosition(props.dndItem._id, 0, 0, props.bulletinBoardId, convex)
+  }
+
   return (
     <div
-      ref={drag}
-      className={styles.dragSource}
-      style={{
-        left: `${props.dndItem.position.x}px`,
-        top: `${props.dndItem.position.y}px`,
-        zIndex: props.dndItem.position.z,
-      }}
+      ref={drag} // Use `onClickCapture` so that this `onClick` handler fires before any child components.
+      onClickCapture={onClick}
     >
       {!isDragging ? props.children : null}
     </div>

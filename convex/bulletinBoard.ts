@@ -24,6 +24,26 @@ export const create = mutation(async ({ db }, id: string) => {
       z: 1,
     },
   })
+
+  db.insert('items', {
+    type: 'pushPin',
+    bulletinBoard,
+    position: {
+      x: 0,
+      y: 300,
+      z: 2,
+    },
+  })
+
+  db.insert('items', {
+    type: 'pushPinPile',
+    bulletinBoard,
+    position: {
+      x: 0,
+      y: 450,
+      z: 3,
+    },
+  })
 })
 
 export function findById(db: DatabaseReader, id: string) {

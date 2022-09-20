@@ -12,9 +12,10 @@
 import type { create as bulletinBoard__create } from "../bulletinBoard";
 import type { load as bulletinBoard__load } from "../bulletinBoard";
 import type { setPosition as item__setPosition } from "../item";
+import type { trash as item__trash } from "../item";
+import type { create as pushPin__create } from "../pushPin";
 import type { create as textNote__create } from "../textNote";
 import type { setText as textNote__setText } from "../textNote";
-import type { trash as textNote__trash } from "../textNote";
 import type { OptimisticLocalStore as GenericOptimisticLocalStore } from "convex/browser";
 import type { ClientMutation, ClientQuery } from "convex/server";
 
@@ -34,9 +35,10 @@ export type ConvexAPI = {
   mutations: {
     "bulletinBoard:create": ClientMutation<typeof bulletinBoard__create>;
     "item:setPosition": ClientMutation<typeof item__setPosition>;
+    "item:trash": ClientMutation<typeof item__trash>;
+    "pushPin:create": ClientMutation<typeof pushPin__create>;
     "textNote:create": ClientMutation<typeof textNote__create>;
     "textNote:setText": ClientMutation<typeof textNote__setText>;
-    "textNote:trash": ClientMutation<typeof textNote__trash>;
   };
 };
 

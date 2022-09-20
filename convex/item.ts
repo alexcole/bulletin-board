@@ -15,15 +15,19 @@ export async function nextZIndex(
 }
 
 export const setPosition = mutation(
-  async ({ db }, id: Id<'items'>, position: { x: number; y: number }) => {
+  async ({ db }, id: Id<'items'>, dx: number, dy: number) => {
     const item = (await db.get(id))!
 
     db.patch(id, {
       position: {
-        x: item.position.x + position.x,
-        y: item.position.y + position.y,
+        x: item.position.x + dx,
+        y: item.position.y + dy,
         z: await nextZIndex(db, item.bulletinBoard),
       },
     })
   }
 )
+
+export const trash = mutation(({ db }, id: Id<'items'>) => {
+  db.delete(id)
+})

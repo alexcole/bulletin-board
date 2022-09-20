@@ -32,11 +32,26 @@ const notePad = s.object({
 
 export type NotePad = Infer<typeof notePad>
 
+const pushPin = s.object({
+  type: s.literal('pushPin'),
+  position,
+  bulletinBoard: s.id('bulletinBoards'),
+})
+
+export type PushPin = Infer<typeof pushPin>
+
+const pushPinPile = s.object({
+  type: s.literal('pushPinPile'),
+  position,
+  bulletinBoard: s.id('bulletinBoards'),
+})
+
+export type PushPinPile = Infer<typeof pushPinPile>
+
 export default defineSchema({
-  items: defineTable(s.union(textNote, trashCan, notePad)).index(
-    'by_bulletinBoard_z',
-    ['bulletinBoard', 'position.z']
-  ),
+  items: defineTable(
+    s.union(textNote, trashCan, notePad, pushPin, pushPinPile)
+  ).index('by_bulletinBoard_z', ['bulletinBoard', 'position.z']),
   bulletinBoards: defineTable({
     id: s.string(),
   }).index('by_identifier', ['id']),

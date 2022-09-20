@@ -1,15 +1,13 @@
-import { mutation } from './_generated/server'
-import { Document, Id } from './_generated/dataModel'
 import { findById } from './bulletinBoard'
 import { nextZIndex } from './item'
+import { mutation } from './_generated/server'
 
 export const create = mutation(
   async ({ db }, x: number, y: number, bulletinBoardId: string) => {
     const bulletinBoard = await findById(db, bulletinBoardId)
 
-    db.insert('items', <Document<'items'>>{
-      text: '',
-      type: 'textNote',
+    db.insert('items', {
+      type: 'pushPin',
       position: {
         x,
         y,
@@ -19,7 +17,3 @@ export const create = mutation(
     })
   }
 )
-
-export const setText = mutation(({ db }, id: Id<'items'>, text: string) => {
-  db.patch(id, <any>{ text })
-})
